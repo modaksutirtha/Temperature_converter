@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Change</title>
+    <style>
+        body {
+            background-color: skyblue;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border: 7px double blue;
+        }
+
+        #head {
+            text-align: center;
+
+            @media (max-width: 360px) {
+                font-size: x-large;
+            }
+
+        }
+
+        #inputs {
+            text-align: center;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+
+            @media (max-width: 1440px) {
+                flex-direction: column;
+            }
+        }
+
+        #inputs label {
+            font-weight: bold;
+        }
+
+        .main {
+            margin: 223px 358px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 5px 5px 4px;
+
+            @media (max-width: 1440px) {
+                margin: 161px 29px;
+            }
+        }
+
+        .cel {
+            display: flex;
+            flex-direction: column;
+            padding: 35px 65px;
+        }
+
+        .cel input {
+            padding: 12px 35px;
+            font-size: 15px;
+            font-weight: bold;
+
+            @media (max-width: 360px) {
+                padding: 12px 3px;
+            }
+        }
+
+        .up {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .up img {
+            margin-left: 20px;
+            height: 25px;
+            width: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="up">
+            <h1 id="head">TEMPERATURE CHANGE</h1>
+            <img src="thermo.avif" alt="wait">
+        </div>
+
+        <div id="inputs">
+            <div class="cel">
+                <label>CELSIUS:-</label>
+                <input type="number" value="0" id="celi" class="inp">
+            </div>
+            <div class="cel">
+                <label>FARENHITE:-</label>
+                <input type="number" value="32" id="feri" class="inp">
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let cel = document.getElementById("celi");
+        let feri = document.getElementById("feri");
+
+        cel.addEventListener('input', function () {
+            let c = this.value;
+            let f = (c * 9 / 5) + 32;
+            if (!Number.isInteger(f)) {
+                f = f.toFixed(3);
+            }
+            feri.value = f;
+        })
+        let celi = document.getElementById("celi");
+        celi.addEventListener('focus', function () {
+            celi.style.cssText = "background-color:rgb(207, 235, 247)";
+        })
+        celi.addEventListener('blur', function () {
+            celi.style.cssText = "background-color:white";
+        })
+
+        feri.addEventListener('input', function () {
+            let f = this.value;
+            let c = (f - 32) * 5 / 9;
+            if (!Number.isInteger(c)) {
+                c = c.toFixed(3);
+            }
+            celi.value = c;
+        })
+        let fer = document.getElementById("feri");
+        fer.addEventListener('focus', function () {
+            fer.style.cssText = "background-color:rgb(207, 235, 247)";
+        })
+        fer.addEventListener('blur', function () {
+            fer.style.cssText = "background-color:white";
+        })
+
+    </script>
+</body>
+
+</html>
